@@ -71,15 +71,13 @@ for i = 1:num_iterations
 	n = vars(:,4);
 
 	% determine spike times and interspike intervals
-% 	[peaks, indxs]=findpeaks(Vm,'MINPEAKHEIGHT',-10);
-	[peaks, indxs]=findpeaks(Vm,'MINPEAKHEIGHT',-30);
+	[peaks, indxs]=findpeaks(Vm,'MINPEAKHEIGHT',-10);
 	spiketimes=t(indxs);
 	spikeintervals=diff(spiketimes);
 	spikeCounts(i) = length(spiketimes);
 	
 	% Compute Frequency:
-	
-	
+
 	% Computation Style:
 	% Mean:
 
