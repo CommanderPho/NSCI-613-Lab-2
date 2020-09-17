@@ -1,17 +1,19 @@
 % Produce Final Results: Lab 2
 % After calling run_HodHux:
 
-spikeFrequency = spikeFrequency_mean;
-[min_spikeFrequency, min_freq_i] = min(spikeFrequency);
-[max_spikeFrequency, max_freq_i] = max(spikeFrequency);
-min_current_x = pulsei_var(min_freq_i);
-max_current_x = pulsei_var(max_freq_i);
-fprintf('Min: (%.6g, %.6g)\n',min_current_x,min_spikeFrequency);
-fprintf('Max: (%.6g, %.6g)\n',max_current_x,max_spikeFrequency);
-% [1.1, 49.49]
-% 
-% Compute the f_{c}:
-f_c = min_spikeFrequency; 
+if ComputationalOptions.shouldComputePeaks
+	spikeFrequency = spikeFrequency_mean;
+	[min_spikeFrequency, min_freq_i] = min(spikeFrequency);
+	[max_spikeFrequency, max_freq_i] = max(spikeFrequency);
+	min_current_x = pulsei_var(min_freq_i);
+	max_current_x = pulsei_var(max_freq_i);
+	fprintf('Min: (%.6g, %.6g)\n',min_current_x,min_spikeFrequency);
+	fprintf('Max: (%.6g, %.6g)\n',max_current_x,max_spikeFrequency);
+	% [1.1, 49.49]
+	% 
+	% Compute the f_{c}:
+	f_c = min_spikeFrequency; 
+end
 
 
 % figure(2)
