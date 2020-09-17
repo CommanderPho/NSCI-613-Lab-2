@@ -54,7 +54,6 @@ interestingPlotIndicies = zeros(length(searchPlotValues),1);
 for i=1:length(searchPlotValues)
 	found_indicies = find(abs(resultsTable.AppliedCurrent-searchPlotValues(i)) < 0.001);
 	interestingPlotIndicies(i) = found_indicies;
-% 	interestingPlotIndicies(i) = find(resultsTable.AppliedCurrent == searchPlotValues(i));
 end
 
 % interestingPlotIndicies = find(resultsTable.AppliedCurrent == searchPlotValues);
