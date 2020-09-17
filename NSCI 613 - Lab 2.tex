@@ -1,0 +1,177 @@
+\newcommand{\githubRepoNameFormat}[1]{ \textsl{\footnotesize#1} }
+%\github{real-URL}{display-name}
+%\newcommand{\github}[2]{\faGithub\href{#1}{#2}}
+\newcommand{\github}[2]{\href{#1}{\githubRepoNameFormat{#2}}}
+
+%\githubFromShortName{githubUser}{repoName}{displayName}
+\newcommand{\githubFromShortName}[3]{\github{https://github.com/#1/#2}{#3}}
+
+%\phoGithub{repoName}{displayName}
+%\newcommand{\phoGithub}[2]{\githubFromShortName{CommanderPho}{#1}{#2 (Private)}}
+\newcommand{\phoGithub}[2]{\githubFromShortName{CommanderPho}{#1}{#2}}
+
+
+\documentclass[12pt]{article}
+\usepackage[usenames]{color} %used for font color
+\usepackage{amssymb}
+\usepackage{pho-equation}
+\usepackage[assignment]{pho-format}
+
+\usepackage{hyperref} % Required for adding links and customizing them
+\definecolor{linkcolour}{rgb}{0,0.2,0.6} % Link color
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour} % Set link colors throughout the document
+
+
+\title{NSCI 613 - Lab 2}
+\author{\phoName}
+\subject{ NSCI 613 - Neurophysiology and Computational Neuroscience }
+%\studentID{2437149}
+
+
+\begin{document}
+\maketitle
+\vfill
+All source code for this assignment is available in my Github repository: \phoGithub{NSCI-613-Lab-2}{https://github.com/CommanderPho/NSCI-613-Lab-2}
+
+
+\updateheaders
+\clearpage
+
+% P1
+\Question{Neurons in Action - Na Action Potential Tutorial}
+
+\slntParagraph{ Increasing the delay of the second current pulse from $9[ms]$ up in $0.1[ms]$ increments, we find that a delay of approximately $10.3[ms]$ is the minimum refractory time between action potential events evoked by a current pulse of the same magnitude. See Figure \ref{fig:P1} for the voltage curve.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Results/P1}
+\caption{\label{fig:P1} Voltage Plots used to determine the minimum refractory time between action potential events for P1. }
+\end{figure}
+
+
+% P2
+\Question{Numerically computing the frequency-current (f-I) relation}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Results/f-I_Relation_for_Applied_Current_between_0_to_60}
+\caption{\label{fig:P2-A} f-I Relation Plot for Applied Current between 0 to $60 \frac{\mu A}{cm^{2}}$  }
+\end{figure}
+
+%% P2.A
+\subQuestion{Firing threshold current}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Results/2a}
+\caption{\label{fig:P2-A} Determining Continuous Firing Threshold by modulating applied current density. See that the APs do not repetitively fire for the whole stimulation period until the $6.4 \frac{\mu A}{cm^{2}}$ case. }
+\end{figure}
+
+\slntParagraph{ Increasing the applied current density in small $0.1 \frac{\mu A}{cm^{2}}$ increments, it was determined that an applied current density of $6.4 \frac{\mu A}{cm^{2}}$ was required to produce repeated AP firing throughout the entire stimulation period. At this applied current density, the firing frequency was found to be $54.2183 [Hz]$ on average, or $54.65 [Hz]$ at steady-state. See Figure \ref{fig:P2-A} for details. }
+
+%Min: (6.1, 50.9415)
+%Max: (60, 124.384)
+
+
+%% P2.B
+\subQuestion{Subthreshold Oscillations}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Results/2b}
+\caption{\label{fig:P2-B} Subthreshold Oscillation Plot with labeled points. }
+\end{figure}
+
+\slntParagraph{ The subthreshold oscillation frequency at $6.0 \frac{\mu A}{cm^{2}}$ was found to be approximately $84.6024 [Hz]$. See Figure \ref{fig:P2-B} for details. This subthreshold oscillation frequency was substantially higher than the action potential firing frequency (which was about $54 [Hz]$) at the firing threshold. I am uncertain why this is the case, as I expected that the subthreshold oscillation frequency approximately equals the minimum firing threshold frequency. Comparing this to the maximum attained frequency of $136.952 [Hz]$ which occurs around $80 \frac{\mu A}{cm^{2}}$ does not reveal anything either. }
+
+
+% 74.0081 Hz @ 2.2 mA
+
+
+%Comparing this to the maximum attained frequency of $137.199 [Hz]$ which occurs around $80 \frac{\mu A}{cm^{2}}$ does not reveal anything either.
+%Comparing this to the maximum attained frequency of $150.014 [Hz]$ which occurs around $80 \frac{\mu A}{cm^{2}}$ does not reveal anything either.
+
+
+
+%\begin{table}[h!]
+%\begin{tabular}{|l|l|l|}
+%\hline
+%Voltage Step [mV] & Peak $I_{\text{Na}} \rfrac{mA}{\text{cm}^2}$ & Peak $g_{\text{Na}}$ \\ \hline\hline
+%-5                & -1.5738                                   & 0.023                                    \\ \hline
+%+100              & 2.275                                    & 0.051                                      \\ \hline
+%\end{tabular}
+%\caption{Subthreshold Oscillation Values for  }
+%\label{table:3}
+%\end{table}
+
+
+
+
+% P3
+\Question{Depolariziation Block Effects}
+
+%\slntParagraph{ Increasing the applied current density above $60 \frac{\mu A}{cm^{2}}$ the action potential firing continues to increase in frequency until a value of approximately $81 \frac{\mu A}{cm^{2}}$, where a sharp decline in the number of spikes is observed. This is because it falls under the $-10[mV]$ value used in the findpeaks(...) function as the minimum peak height. Up to values of $100 \frac{\mu A}{cm^{2}}$ oscillatory behavior is still observed in the voltage curves, despite spiking not being observed.}
+
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=0.9\textwidth]{Results/3}
+%\caption{\label{fig:P3-1}  Determining Depolariziation Block level by modulating applied current density. See that the subthreshold oscillatory behavior continues at low magnitude up until the $173.0 \frac{\mu A}{cm^{2}}$ case, where it stops approximately $290 [ms]$ in.}
+%\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Results/3-2}
+\caption{\label{fig:P3-2}  Determining Depolariziation Block level by modulating applied current density. See that the subthreshold oscillatory behavior continues at low magnitude up until the $470.0 \frac{\mu A}{cm^{2}}$ case, where no additional oscillations occur after the initial return from the refractory period.}
+\end{figure}
+
+
+%\slntParagraph{ Increasing the applied current density above $60 \frac{\mu A}{cm^{2}}$ the action potential firing continues to increase in frequency while decreasing in magnitude until a value of approximately $81 \frac{\mu A}{cm^{2}}$, where a sharp decline in the number of spikes is observed. This is because it falls under the $-10[mV]$ reference value used in the findpeaks(...) function as the minimum peak height. From this point, applied current density was further increased up until oscillatory behavior disappeared entirely, which occurred at an applied current density of $173.0 \frac{\mu A}{cm^{2}}$. See Figure \ref{fig:P3-1} for more info.}
+
+\slntParagraph{ Increasing the applied current density above $60 \frac{\mu A}{cm^{2}}$ the action potential firing continues to increase in frequency while decreasing in magnitude until a value of approximately $81 \frac{\mu A}{cm^{2}}$, where a sharp decline in the number of spikes is observed. This is because it falls under the $-10[mV]$ reference value used in the findpeaks(...) function as the minimum peak height. From this point, applied current density was further increased up until oscillatory behavior disappeared entirely, which occurred at an applied current density of $470 \frac{\mu A}{cm^{2}}$. See Figure \ref{fig:P3-2} for more info.}
+
+
+
+
+% P4
+\Question{Shifting the potassium activation current to slightly depolarized levels}
+%% P4.A
+\subQuestion{Prediction} 
+\slntParagraph{ I predict that shifting the potassium current will result in action potentials of longer duration (as it will take longer for the potassium current to respond) and lower applied current densities will be required to achieve the same rates of firing. The f-I curve will activate at lower applied currents, but I suspect that the frequency of firing will be slightly slower, since the refractory period will be made longer. }
+
+%% P4.B
+\subQuestion{Modified threshold and f-I curve}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Results/4b}
+\caption{\label{fig:P4-B}  Determining Continuous Firing Threshold by modulating applied current density. See that the APs do not repetitively fire for the whole stimulation period until the $1.1 \frac{\mu A}{cm^{2}}$ case.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Results/4b_fICurve_new}
+\caption{\label{fig:P4-B-1} Potassium current shifted f-I Relation Plot for Applied Current between 0 to $60 \frac{\mu A}{cm^{2}}$ }
+\end{figure}
+
+\slntParagraph{ An applied current density of $1.1 \frac{\mu A}{cm^{2}}$ was required to produce repeated AP firing throughout the entire stimulation period. At this applied current density, the firing frequency was found to be $49.495 [Hz]$. See Figure \ref{fig:P4-B} for details. For the new f-I relation curve, see Figure \ref{fig:P4-B-1}. }
+
+
+%Original: .015 65 [Hz]
+%Modified: .012 77 [Hz]
+%Min: (1.1, 49.4946)
+%Max: (60, 135.271)
+
+% Modified Observations:
+% Higher Peaks
+% Fire more frequently
+
+
+%% P4.C
+\subQuestion{ Explanation of changed behavior} 
+\slntParagraph{ Changing the K+ curve shifted the threshold current from $6.4 \frac{\mu A}{cm^{2}}$ to $1.1 \frac{\mu A}{cm^{2}}$ and the frequency from $54.2183 [Hz]$ to $50.9415 [Hz]$. The decrease in the required applied current to reach the continuous firing threshold was likely due to the change in potassium gating term $n$ (which affects the potassium current $\sub{I}{k} = \sub{g}{K} n^{4} (V - \sub{E}{K})$) by changing $\subfn{\alpha}{n}{V}$ and $\subfn{\beta}{n}{V}$. The increase in the frequency arose from the dependence of the activation time constant $\subfn{\tau}{n}{V} = \frac{1}{\subfn{\alpha}{n}{V} + \subfn{\beta}{n}{V}}$. The increased $\alpha$ and $\beta$ values cause a lower $\sub{\tau}{n}$, meaning a faster time-course of activation resulting in shorter action potential durations, meaning more action potentials can occur in the stimulation interval (increasing the frequency).}
+
+
+%\slntParagraph{ Changing the K+ curve shifted the threshold current from $6.4 \frac{\mu A}{cm^{2}}$ to $1.1 \frac{\mu A}{cm^{2}}$ and the frequency from $54.2183 [Hz]$ to $50.9415 [Hz]$. The decrease in the required applied current to reach the continuous firing threshold was likely due to the change in potassium conductance ratio ($\frac{\sub{g}{K}}{	\Summation{\forall i}{}{\sub{g}{i}}}$ ) in the parallel conductance equation $V_{m} = \frac{\sub{g}{Na}}{	\Summation{\forall i}{}{\sub{g}{i}}}E_{Na} + \frac{\sub{g}{K}}{	\Summation{\forall i}{}{\sub{g}{i}}}E_{K} + \frac{\sub{g}{Cl}}{	\Summation{\forall i}{}{\sub{g}{i}}}E_{Cl}$ resulting in a higher resting membrane voltage, meaning less current is required to induce firing. I suspect that the increase in the frequency arose from }   
+
+\end{document}

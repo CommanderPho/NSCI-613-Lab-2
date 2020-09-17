@@ -14,20 +14,20 @@ fprintf('Max: (%.6g, %.6g)\n',max_current_x,max_spikeFrequency);
 f_c = min_spikeFrequency; 
 
 
-figure(2)
-clf
-plot(pulsei_var',spikeFrequency)
-if is_modified_potassium_curve_mode
-	title('f-I relation (Modified K+ Mode) for I_{app} between 0 and 60 [\mu A / cm^{2}]')
-else
-	title('f-I relation for I_{app} between 0 and 60 [\mu A / cm^{2}]')
-end
-xlabel('Applied Depolarizing Current [\mu A / cm^{2}]')
-ylabel('Firing rate [Hz]')
-xlim([0,60])
-ylim([0,max_spikeFrequency*1.1])
-hold on;
-scatter([min_current_x, max_current_x], [min_spikeFrequency, max_spikeFrequency],'r')
+% figure(2)
+% clf
+% plot(pulsei_var',spikeFrequency)
+% if is_modified_potassium_curve_mode
+% 	title('f-I relation (Modified K+ Mode) for I_{app} between 0 and 60 [\mu A / cm^{2}]')
+% else
+% 	title('f-I relation for I_{app} between 0 and 60 [\mu A / cm^{2}]')
+% end
+% xlabel('Applied Depolarizing Current [\mu A / cm^{2}]')
+% ylabel('Firing rate [Hz]')
+% xlim([0,60])
+% ylim([0,max_spikeFrequency*1.1])
+% hold on;
+% scatter([min_current_x, max_current_x], [min_spikeFrequency, max_spikeFrequency],'r')
 
 
 %% Multi-voltage curve plots
@@ -43,6 +43,7 @@ else
 % 	searchPlotValues = [2.1, 2.2, 2.3, 2.4];
 % 	searchPlotValues = [6.0, 6.1, 6.2, 6.3, 6.4, 6.5];
 % 	searchPlotValues = [61.0, 70.0, 82.0, 83.0, 170, 172, 173];
+	searchPlotValues = [450, 460, 470, 480];
 
 end
 
@@ -133,9 +134,15 @@ for i=1:num_active_indices
 	% Plot the current data
 	curr_subplot_handle = subplot(num_active_indices,1,i);
 % 	curr_plot_handle = plot(curr_time_t_data, curr_Vm_data);
-	curr_plot_handle = plot(curr_time_t_data, curr_Vm_data, curr_subthreshold_times, curr_peaks, '*');
+% 	curr_plot_handle = plot(curr_time_t_data, curr_Vm_data, curr_subthreshold_times, curr_peaks, '*');
+	curr_plot_handle = plot(curr_time_t_data, curr_Vm_data);
+% 	xlim([98, 110])
+% 	ylim([-37, -30])
 	
-	
+ 	xlim([0, 190])
+ 	ylim([-38, -27])
+% 	ylim([-37, -30])
+
 	%hold on;
 	curr_voltage_string = sprintf('%f [\\mu A / cm^{2}]', active_applied_current_value);
 	curr_sub_string = sprintf('Spikes: %d, SpikeFreq: %.6g [Hz]', active_applied_spikeCount_value, active_applied_spikeFrequency_value);
@@ -159,7 +166,9 @@ xlabel('Time [ms]')
 if is_modified_potassium_curve_mode
 	sgtitle('I_{app} threshold determination for (Modified K+ Mode)')
 else
-	sgtitle('I_{app} threshold determination')
+% 	sgtitle('I_{app} threshold determination')
+	sgtitle('I_{app} Depolarization Block determination')
+
 end
 
 
